@@ -1,15 +1,7 @@
-total_coins = 0
-change = 0
-# 0-cereal bar, 1-crisps, 2-chocolate_bar, 3-bottled_water
-item_price = [["cereal bar", "50"], ["crisps", "60"], ["chocalate bar", "80"], ["bottled water", "90"]]
-print("cereal bar-50p, crisps-60p, chocolate  bar-80p, bottled water-90p")
-
-
-
 def accept_coins(): #accepts and counts coins
     total = total_coins
 
-    coin = int(input("Enter a coin (10, 20, 50, 100): "))
+    coin = int(input("Enter a coin in pence (10, 20, 50, 100): "))
 
     while coin != 0:
         if not(coin == 10 or coin == 20 or coin == 50 or coin == 100):
@@ -18,7 +10,7 @@ def accept_coins(): #accepts and counts coins
         else:
             total += coin
             if total >= 100:
-                print(f"Total amount entered = £{float(total)/100}")
+                print(f"Total amount entered = £{(float(total)/100):.2f}") #changes 100p to £1.00 when printing running total (works for any value >= 100)
             else:
                 print(f"Total amount entered = {total}p") 
         coin = int(input("Enter a coin (10, 20, 50, 100) or type 0 to stop entering coins: "))
@@ -33,7 +25,7 @@ def give_change(cost, total_entered): #Works out the amount of change owed
         change = total_entered - cost
 
         if change >= 100:
-            print(f"Your change is £{float(change)/100}")
+            print(f"Your change is £{(float(change)/100):.2f}") #changes 100p to £1.00 (works for any value >= 100)
         else:
             print(f"Your change is {change}p")
 
@@ -74,22 +66,35 @@ def convert_change_to_coins(change): #Works out the changed owed in coins
 
 
 
+new_customer = input("Is there a customer? (y/n): ").upper()
 
-total_price = accept_coins()
 
-item = int(input("Select an item (0-cereal bar, 1-crisps, 2-chocolate_bar, 3-bottled_water): "))
+while new_customer == "YES" or new_customer == "Y": #Repeats whole program for new users until there aren't any cutomers
 
-while not(item == 0 or item == 1 or item == 2 or item == 3):
-    print("Not a button")
+    total_coins = 0
+    change = 0
+    # 0-cereal bar, 1-crisps, 2-chocolate_bar, 3-bottled_water
+    item_price = [["cereal bar", "50"], ["crisps", "60"], ["chocalate bar", "80"], ["bottled water", "90"]]
+    print("cereal bar-50p, crisps-60p, chocolate  bar-80p, bottled water-90p")
+
+
+    total_price = accept_coins()
+
     item = int(input("Select an item (0-cereal bar, 1-crisps, 2-chocolate_bar, 3-bottled_water): "))
 
-
-price = int(item_price[item][1])
-
-print(f"Item costs {price}p")
-  
-change = give_change(price, total_price)
+    while not(item == 0 or item == 1 or item == 2 or item == 3):
+        print("Not a button")
+        item = int(input("Select an item (0-cereal bar, 1-crisps, 2-chocolate_bar, 3-bottled_water): "))
 
 
-if change > 0:
-    convert_change_to_coins(change)
+    price = int(item_price[item][1])
+
+    print(f"Item costs {price}p")
+    
+    change = give_change(price, total_price)
+
+
+    if change > 0:
+        convert_change_to_coins(change)
+
+    new_customer = input("Is there a new customer? (y/n): ").upper()
