@@ -1,3 +1,5 @@
+from colorama import Fore, Back, Style #Controls colour of text
+
 def accept_coins(): #accepts and counts coins
     total = total_coins
 
@@ -27,7 +29,7 @@ def accept_coins(): #accepts and counts coins
             
         while coin.isdigit() == False: #Validation
             print("Coin must be an integer")
-            coin = input("Enter a coin in pence (10, 20, 50, 100): ")
+            coin = input("Enter a coin in pence (10, 20, 50, 100) or type 0 to stop entering coins: ")
 
         coin = int(coin)
         
@@ -49,15 +51,17 @@ def give_change(cost, total_entered): #Works out the amount of change owed
     elif total_entered < cost:
 
         if total_entered > 100:
-            print(f"Not enough money entered. Refunded £{float(total_entered)/100}")
+            print(f"Not enough money entered. Refunded £{float(total_entered)/100}") #changes 100p to £1.00 (works for any value >= 100)
         else:
             print(f"Not enough money entered. Refunded {total_entered}p")
 
     else:
         print("No change")
+
     return change
 
 
+#This function only runs if change > 0
 def convert_change_to_coins(change): #Works out the changed owed in coins
 
     #Count of how many of each coin is given as change
@@ -109,10 +113,10 @@ while new_customer == "YES" or new_customer == "Y": #Repeats whole program for n
     change = 0
     # 0-cereal bar, 1-crisps, 2-chocolate_bar, 3-bottled_water
     item_price = [["cereal bar", "50"], ["crisps", "60"], ["chocalate bar", "80"], ["bottled water", "90"]]
-    print("cereal bar-50p, crisps-60p, chocolate  bar-80p, bottled water-90p")
+    print(Fore.BLACK + Back.WHITE + "cereal bar-50p, crisps-60p, chocolate bar-80p, bottled water-90p " + Style.RESET_ALL) #Prints in black text with a white background
 
 
-    total_price = accept_coins()
+    total_entered = accept_coins()
 
     item = int(input("Select an item (0-cereal bar, 1-crisps, 2-chocolate_bar, 3-bottled_water): "))
 
@@ -124,11 +128,19 @@ while new_customer == "YES" or new_customer == "Y": #Repeats whole program for n
     price = int(item_price[item][1])
 
     print(f"Item costs {price}p")
+
+    if total_entered >= price:
+        print(f"{Fore.YELLOW}Dispensed {item_price[item][0]}{Style.RESET_ALL}") 
+
     
-    change = give_change(price, total_price)
+    
+    change = give_change(price, total_entered)
 
 
-    if change > 0:
+        
+
+
+    if change > 0: 
         convert_change_to_coins(change)
 
     new_customer = input("Is there a new customer? (y/n): ").upper()
