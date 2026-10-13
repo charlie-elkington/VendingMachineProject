@@ -1,9 +1,18 @@
 def accept_coins(): #accepts and counts coins
     total = total_coins
 
-    coin = int(input("Enter a coin in pence (10, 20, 50, 100): "))
+    coin = input("Enter a coin in pence (10, 20, 50, 100): ")
+    
+    while coin.isdigit() == False: #Validation
+        print("Coin must be an integer")
+        coin = input("Enter a coin in pence (10, 20, 50, 100): ")
+
+    
+
 
     while coin != 0:
+        coin = int(coin) #Allows program to do calculations with the coins
+
         if not(coin == 10 or coin == 20 or coin == 50 or coin == 100):
             print("Coin not accepted")
 
@@ -13,7 +22,15 @@ def accept_coins(): #accepts and counts coins
                 print(f"Total amount entered = £{(float(total)/100):.2f}") #changes 100p to £1.00 when printing running total (works for any value >= 100)
             else:
                 print(f"Total amount entered = {total}p") 
-        coin = int(input("Enter a coin (10, 20, 50, 100) or type 0 to stop entering coins: "))
+
+        coin = input("Enter a coin (10, 20, 50, 100) or type 0 to stop entering coins: ")
+            
+        while coin.isdigit() == False: #Validation
+            print("Coin must be an integer")
+            coin = input("Enter a coin in pence (10, 20, 50, 100): ")
+
+        coin = int(coin)
+        
 
     return total
 
@@ -67,6 +84,23 @@ def convert_change_to_coins(change): #Works out the changed owed in coins
 
 
 new_customer = input("Is there a customer? (y/n): ").upper()
+new_customer_valid = False
+
+while new_customer_valid == False: #Validating that user typed y or n
+    if new_customer.isalpha()  == False:
+        print("Must be y or n")
+        new_customer = input("Is there a customer? (y/n): ").upper()
+
+    elif len(new_customer) != 1:
+        print("Must be y or n")
+        new_customer = input("Is there a customer? (y/n): ").upper()
+
+    elif not(new_customer in "YN"):
+        print("Must be y or n")
+        new_customer = input("Is there a customer? (y/n): ").upper()
+
+    else:
+        new_customer_valid = True
 
 
 while new_customer == "YES" or new_customer == "Y": #Repeats whole program for new users until there aren't any cutomers
@@ -98,3 +132,21 @@ while new_customer == "YES" or new_customer == "Y": #Repeats whole program for n
         convert_change_to_coins(change)
 
     new_customer = input("Is there a new customer? (y/n): ").upper()
+
+    new_customer_valid = False
+
+    while new_customer_valid == False: #Validating that user typed y or n
+        if new_customer.isalpha()  == False:
+            print("Must be y or n")
+            new_customer = input("Is there a customer? (y/n): ").upper()
+
+        elif len(new_customer) != 1:
+            print("Must be y or n")
+            new_customer = input("Is there a customer? (y/n): ").upper()
+
+        elif not(new_customer in "YN"):
+            print("Must be y or n")
+            new_customer = input("Is there a customer? (y/n): ").upper()
+
+        else:
+            new_customer_valid = True
