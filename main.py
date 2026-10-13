@@ -118,19 +118,25 @@ while new_customer == "YES" or new_customer == "Y": #Repeats whole program for n
 
     total_entered = accept_coins()
 
-    item = int(input("Select an item (0-cereal bar, 1-crisps, 2-chocolate_bar, 3-bottled_water): "))
+    item = input("Select an item (0-cereal bar, 1-crisps, 2-chocolate_bar, 3-bottled_water): ")
+    item_valid = False
 
-    while not(item == 0 or item == 1 or item == 2 or item == 3):
-        print("Not a button")
-        item = int(input("Select an item (0-cereal bar, 1-crisps, 2-chocolate_bar, 3-bottled_water): "))
+    while item_valid != True:
+        if item.isdigit() == False:
+            print("Not a button")
+            item = input("Select an item (0-cereal bar, 1-crisps, 2-chocolate_bar, 3-bottled_water): ")
+        elif not(item == "0" or item == "1" or  item == "2" or  item == "3"):
+            print("Not a button")
+            item = input("Select an item (0-cereal bar, 1-crisps, 2-chocolate_bar, 3-bottled_water): ")
+        else:
+            item_valid = True
 
-
-    price = int(item_price[item][1])
+    price = int(item_price[int(item)][1])
 
     print(f"Item costs {price}p")
 
     if total_entered >= price:
-        print(f"{Fore.YELLOW}Dispensed {item_price[item][0]}{Style.RESET_ALL}") 
+        print(f"{Fore.YELLOW}Dispensed {item_price[int(item)][0]}{Style.RESET_ALL}") 
 
     
     
