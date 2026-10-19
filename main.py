@@ -3,11 +3,11 @@ from colorama import Fore, Back, Style #Controls colour of text
 def accept_coins(): #accepts and counts coins
     total = total_coins
 
-    coin = input("Enter a coin in pence (10, 20, 50, 100): ")
+    coin = input("\nEnter a coin in pence (10, 20, 50, 100): ")
     
     while coin.isdigit() == False: #Validation
         print("Coin must be an integer")
-        coin = input("Enter a coin in pence (10, 20, 50, 100): ")
+        coin = input("\nEnter a coin in pence (10, 20, 50, 100): ")
 
     
 
@@ -25,11 +25,11 @@ def accept_coins(): #accepts and counts coins
             else:
                 print(f"Total amount entered = {total}p") 
 
-        coin = input("Enter a coin (10, 20, 50, 100) or type 0 to stop entering coins: ")
+        coin = input("\nEnter a coin (10, 20, 50, 100) or type 0 to stop entering coins: ")
             
         while coin.isdigit() == False: #Validation
             print("Coin must be an integer")
-            coin = input("Enter a coin in pence (10, 20, 50, 100) or type 0 to stop entering coins: ")
+            coin = input("\nEnter a coin in pence (10, 20, 50, 100) or type 0 to stop entering coins: ")
 
         coin = int(coin)
         
@@ -133,7 +133,7 @@ while new_customer == "YES" or new_customer == "Y": #Repeats whole program for n
 
     price = int(item_price[int(item)][1])
 
-    print(f"Item costs {price}p")
+    print(f"\nItem costs {price}p")
 
     if total_entered >= price:
         print(f"{Fore.YELLOW}Dispensed {item_price[int(item)][0]}{Style.RESET_ALL}") 
@@ -149,7 +149,7 @@ while new_customer == "YES" or new_customer == "Y": #Repeats whole program for n
     if change > 0: 
         convert_change_to_coins(change)
 
-    new_customer = input("Is there a new customer? (y/n): ").upper()
+    new_customer = input("\nIs there a new customer? (y/n): ").upper()
 
     new_customer_valid = False
 
