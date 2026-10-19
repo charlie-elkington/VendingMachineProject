@@ -82,7 +82,7 @@ def convert_change_to_coins(change): #Works out the changed owed in coins
     tens = change // 10
     change %= 10
 
-    print(f"Your change is {pounds} £1 coins, {fifties} 50p coins, {twenties} 20p coins, {tens} 10p coins")
+    print(f"Your change in coins is: {pounds} £1 coins, {fifties} 50p coins, {twenties} 20p coins, {tens} 10p coins")
 
 
 
