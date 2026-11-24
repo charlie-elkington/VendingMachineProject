@@ -1,57 +1,52 @@
-from colorama import Fore, Back, Style #Controls colour of text
+from colorama import Fore, Back, Style  # Controls colour of text
 
-def accept_coins(): #accepts and counts coins
+
+def accept_coins():  # accepts and counts coins
     total = total_coins
 
     coin = input("\nEnter a coin in pence (10, 20, 50, 100): ")
-    
-    while coin.isdigit() == False: #Validation
+
+    while coin.isdigit() == False:  # Validation
         print("Coin must be an integer")
         coin = input("\nEnter a coin in pence (10, 20, 50, 100): ")
 
-    
-
-
     while coin != 0:
-        coin = int(coin) #Allows program to do calculations with the coins
+        coin = int(coin)  # Allows program to do calculations with the coins
 
-        if not(coin == 10 or coin == 20 or coin == 50 or coin == 100):
+        if not (coin == 10 or coin == 20 or coin == 50 or coin == 100):
             print("Coin not accepted")
-
         else:
             total += coin
             if total >= 100:
-                print(f"Total amount entered = £{(float(total)/100):.2f}") #changes 100p to £1.00 when printing running total (works for any value >= 100)
+                print(f"Total amount entered = £{(float(total)/100):.2f}")  # changes 100p to £1.00 when printing running total (works for any value >= 100)
             else:
-                print(f"Total amount entered = {total}p") 
+                print(f"Total amount entered = {total}p")
 
         coin = input("\nEnter a coin (10, 20, 50, 100) or type 0 to stop entering coins: ")
-            
-        while coin.isdigit() == False: #Validation
+
+        while coin.isdigit() == False:  # Validation
             print("Coin must be an integer")
             coin = input("\nEnter a coin in pence (10, 20, 50, 100) or type 0 to stop entering coins: ")
 
         coin = int(coin)
-        
 
     return total
 
 
-
-def give_change(cost, total_entered): #Works out the amount of change owed
+def give_change(cost, total_entered):  # Works out the amount of change owed
     change = 0
     if total_entered > cost:
         change = total_entered - cost
 
         if change >= 100:
-            print(f"Your change is £{(float(change)/100):.2f}") #changes 100p to £1.00 (works for any value >= 100)
+            print(f"Your change is £{(float(change)/100):.2f}")  # changes 100p to £1.00 (works for any value >= 100)
         else:
             print(f"Your change is {change}p")
 
     elif total_entered < cost:
 
         if total_entered > 100:
-            print(f"Not enough money entered. Refunded £{float(total_entered)/100}") #changes 100p to £1.00 (works for any value >= 100)
+            print(f"Not enough money entered. Refunded £{float(total_entered)/100}")  # changes 100p to £1.00 (works for any value >= 100)
         else:
             print(f"Not enough money entered. Refunded {total_entered}p")
 
@@ -61,10 +56,10 @@ def give_change(cost, total_entered): #Works out the amount of change owed
     return change
 
 
-#This function only runs if change > 0
-def convert_change_to_coins(change): #Works out the changed owed in coins
+# This function only runs if change > 0
+def convert_change_to_coins(change):  # Works out the changed owed in coins
 
-    #Count of how many of each coin is given as change
+    # Count of how many of each coin is given as change
     pounds = 0
     fifties = 0
     twenties = 0
@@ -85,13 +80,11 @@ def convert_change_to_coins(change): #Works out the changed owed in coins
     print(f"Your change in coins is: {pounds} £1 coins, {fifties} 50p coins, {twenties} 20p coins, {tens} 10p coins")
 
 
-
-
 new_customer = input("Is there a customer? (y/n): ").upper()
 new_customer_valid = False
 
-while new_customer_valid == False: #Validating that user typed y or n
-    if new_customer.isalpha()  == False:
+while new_customer_valid == False:  # Validating that user typed y or n
+    if new_customer.isalpha() == False:
         print("Must be y or n")
         new_customer = input("Is there a customer? (y/n): ").upper()
 
@@ -99,7 +92,7 @@ while new_customer_valid == False: #Validating that user typed y or n
         print("Must be y or n")
         new_customer = input("Is there a customer? (y/n): ").upper()
 
-    elif not(new_customer in "YN"):
+    elif not (new_customer in "YN"):
         print("Must be y or n")
         new_customer = input("Is there a customer? (y/n): ").upper()
 
@@ -107,7 +100,7 @@ while new_customer_valid == False: #Validating that user typed y or n
         new_customer_valid = True
 
 
-while new_customer == "YES" or new_customer == "Y": #Repeats whole program for new users until there aren't any cutomers
+while new_customer == "YES" or new_customer == "Y":  # Repeats whole program for new users until there aren't any cutomers
 
     total_coins = 0
     change = 0
@@ -153,7 +146,7 @@ while new_customer == "YES" or new_customer == "Y": #Repeats whole program for n
 
     new_customer_valid = False
 
-    while new_customer_valid == False: #Validating that user typed y or n
+    while new_customer_valid == False:  # Validating that user typed y or n
         if new_customer.isalpha()  == False:
             print("Must be y or n")
             new_customer = input("Is there a customer? (y/n): ").upper()
